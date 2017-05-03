@@ -12,7 +12,8 @@
 
 //#include "TiTTimer.h"
 #include "time.h"
-#include "LeTLeds.h"
+//#include "LeTLeds.h"
+#include "TPWM.h"
 #include "LcTLCD.h"
 #include "AuTAudio.h"
 #include "SwTSwitch.h"
@@ -66,11 +67,12 @@ void initCPU(){
 int main(void){
     initCPU();
     TiInit();
-    LeInit();
+    PWMInit();
+    //LeInit();
     LcInit(2,16);
     AuInit();
     SwInit();
-    PbInit();
+    //PbInit();
     AdInit();
     BlInit();
     SiInit();
@@ -82,7 +84,10 @@ int main(void){
     initPropaganda();
     while(1){
         
-        MotorLed();
+       // MotorLed();
+        MotorPWM(0);
+        MotorPWM(1);
+        MotorPWM(2);
         MotorLCD();
         MotorAudio();
         MotorPropaganda();

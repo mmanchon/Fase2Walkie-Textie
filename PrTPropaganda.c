@@ -1,9 +1,20 @@
 #include "PrTPropaganda.h"
 
 
-static int timestamp;
+static int timestamp,numeroChar;
 static char timerPropaganda, estatPropaganda;
-static char temp[50], opcio;
+static char temp[50], opcio, hihaID;
+static char IDtemp[3];
+
+
+#define     MAXCOLUMNES 16
+static char estatLCD = 0;
+const unsigned char noID[]={"Waiting for ID  "}; //Més val que tingui 16 caràcters...
+const unsigned char noMessage[]={"Waiting message "};
+static unsigned char timerLCD, caracterInici, i,j;
+static unsigned int mostra;
+static unsigned char segonaLinia[MAXCOLUMNES];
+static char ID[3];
 
 void myItoa(int num){
     //Post: escriu el valor ascii de num a tmp;
@@ -35,6 +46,11 @@ void Menu(void){
 
 void initPropaganda(void){
     //Pre: La sio està inicialitzada
+    int i;
+    for(i=0;i<3;i++){
+        IDtemp[i] = '0';
+    }
+    numeroChar = 2;
     SiPutsCooperatiu(PROPAGANDA_1);
     SiPutsCooperatiu(PROPAGANDA_2);
     Menu();
@@ -49,10 +65,12 @@ void MotorPropaganda(void){
         case 0:
             //Aquí estem esperant ordre del menú principal
             if (SiCharAvail() != 0){
-                SiPutsCooperatiu("\r\nArribo al estat 1\r\n\0");
+                //SiPutsCooperatiu("\r\nArribo al estat 1\r\n\0");
                 opcio= SiGetChar();
                 if ((opcio <= '6') && (opcio >= '1')){
                     estatPropaganda = opcio-'0';
+                    printaFrase(estatPropaganda);
+                 
                 }else{
                     SiSendChar('\r');
                     SiSendChar(opcio);
@@ -65,31 +83,46 @@ void MotorPropaganda(void){
             break;
         case 1:
             //Nou identificador
-           /* if (SiCharAvail() != 0){
-
-                if (SiGetChar() == 27){
-                    //Menu();
-                    estatPropaganda=0;
-                }
-            }*/
-            if (TiGetTics(timerPropaganda) > 1000){
-                if (++timestamp == 10000) timestamp=0;
-                myItoa(timestamp);
-                SiSendChar('\r');
-                SiPutsCooperatiu(temp);
-                TiResetTics(timerPropaganda);
-            }
             if (SiCharAvail() != 0){
-                if (SiGetChar() == 27){
-                    Menu();
-                    estatPropaganda=0;
-                }
+                estatPropaganda = 8;
+            }
+            break;
+        case 8:
+            IDtemp[numeroChar]=SiGetChar();
+            if(IDtemp[numeroChar] == 27){
+                Menu();
+                estatPropaganda = 0;
+            }else if(numeroChar > 0){
+                estatPropaganda = 1;
+                numeroChar--;
+            }else{
+                SiPutsCooperatiu("\n Gracies pel nou ID!\r\n\0");
+                Menu();
+                estatPropaganda = 0;
+                numeroChar = 2;
+                hihaID = 1;
+                SetPWMID(ID);
             }
             break;
 
         case 2:
             //Visualització uInterruptors
-            if (TiGetTics(timerPropaganda) > 1000){
+            if(TiGetTics(timerPropaganda) > 50){
+                if(hihaID == 1){
+                    SiSendChar('\n');
+                    SiSendChar(ID[2]);
+                    SiSendChar(ID[1]);
+                    SiSendChar(ID[0]);
+                    SiPutsCooperatiu("\r\n\n\0");
+                    Menu();
+                    estatPropaganda = 0;
+                }else{
+                    SiPutsCooperatiu("\nError no hi ha ID\r\n\0");
+                    Menu();
+                    estatPropaganda = 0;
+                }
+            }
+            /*if (TiGetTics(timerPropaganda) > 1000){
                 TiResetTics(timerPropaganda);
                 if (++timestamp == 10000) timestamp=0;
                 SiSendChar('\r');
@@ -102,7 +135,7 @@ void MotorPropaganda(void){
                     Menu();
                     estatPropaganda=0;
                 }
-            }
+            }*/
             break;
         case 3:
             //Visualització pulsadors
@@ -143,14 +176,14 @@ void MotorPropaganda(void){
             estatPropaganda = 51;
             break;
         case 6:
-            SiPutsCooperatiu("\n\rPrem J per encendre o apagar l'altaveu \n\r");
-            if (getAudioStatus()) SiPutsCooperatiu("\rAltaveu ences! \0");
-                        else SiPutsCooperatiu("\rAltaveu apagat!\0");
-            estatPropaganda = 61;
+            __asm__ volatile ("reset");
             break;
 
         case 7:
-            __asm__ volatile ("reset");
+                        SiPutsCooperatiu("\n\rPrem J per encendre o apagar l'altaveu \n\r");
+            if (getAudioStatus()) SiPutsCooperatiu("\rAltaveu ences! \0");
+                        else SiPutsCooperatiu("\rAltaveu apagat!\0");
+            estatPropaganda = 61;
             break;
         case 21:
             SiPutsCooperatiu("\t\tSW2: \0");
@@ -223,14 +256,6 @@ void MotorPropaganda(void){
 
 }
 
-#define     MAXCOLUMNES 16
-static char estatLCD = 0;
-const unsigned char cadena[]={"SDM 2013-14     "}; //Més val que tingui 16 caràcters...
-static unsigned char timerLCD, caracterInici, i,j;
-static unsigned int mostra;
-static unsigned char segonaLinia[MAXCOLUMNES];
-static char ID[3];
-
 
 void initMotorLCD(void){
     //Pre: El LCD està inicialitzat
@@ -261,27 +286,44 @@ void initMotorLCD(void){
 void MotorLCD(void){
     switch (estatLCD){
         case 0:
-            LcPutChar(cadena[j++]);
-            if (j==16) j= 0;
-            if (i++ > MAXCOLUMNES) {
-                estatLCD = 1;
-                TiResetTics(timerLCD);
-                LcGotoXY(0,1);
+            if(hihaID != 1){
+                LcPutChar(noID[j++]);
+                if (j==16) j= 0;
+                if (i++ > MAXCOLUMNES) {
+                    estatLCD = 1;
+                    TiResetTics(timerLCD);
+                    LcGotoXY(0,1);
+                }
+            }else{
+                LcPutChar(noMessage[j++]);
+                if (j==16) j= 0;
+                if (i++ > MAXCOLUMNES) {
+                    estatLCD = 1;
+                    TiResetTics(timerLCD);
+                    LcGotoXY(0,1);
+                }
             }
             break;
 
         case 1: //Preparo el string
-            ID[0]++;
-            ID[1]++;
-            ID[2]++;
-            if(ID[0] > '9'){
-                ID[0] = '0';
-                ID[1] = '0';
-                ID[2] = '0';
+            if(hihaID != 1){
+                ID[0]++;
+                ID[1]++;
+                ID[2]++;
+                if(ID[0] > '9'){
+                    ID[0] = '0';
+                    ID[1] = '0';
+                    ID[2] = '0';
+                }
+            }else{
+                ID[0] = IDtemp[0];
+                ID[1] = IDtemp[1];
+                ID[2] = IDtemp[2];
             }
-            segonaLinia[13] = ID[0];
+            
+            segonaLinia[13] = ID[2];
             segonaLinia[14] = ID[1];
-            segonaLinia[15] = ID[2];
+            segonaLinia[15] = ID[0];
             estatLCD= 2;
             break;
         case 2: //Aquí faig l'itoa, que deu trigar una bona estona el pobre...
@@ -323,6 +365,28 @@ void MotorLCD(void){
     }
 }
 
+
+void printaFrase(char estat){
+    
+    switch(estat){
+        case 1:
+            SiPutsCooperatiu("Intridueix el ID de la placa\r\n\0");
+            break;
+        case 2:
+            SiPutsCooperatiu("\nL'ID actual de la placa es: \r\n\0");
+            TiResetTics(timerPropaganda);
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+
+    }
+}
 /*
  *
  *          Fi  PROPAGANDAAAAAAAAAA!!!!

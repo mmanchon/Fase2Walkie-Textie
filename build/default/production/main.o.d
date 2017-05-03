@@ -1,10 +1,10 @@
 build/default/production/main.o:  \
 main.c  \
 time.h  \
-LeTLeds.h  \
+TPWM.h  \
 LcTLCD.h  \
- AuTAudio.h  \
-SwTSwitch.h  \
+AuTAudio.h  \
+ SwTSwitch.h  \
 PbTPushbutton.h  \
 BlTBacklight.h  \
 AdTADC.h  \

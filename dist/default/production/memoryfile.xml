@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/PIC24FJ32GA002Test.production.elf">
+  <executable name="dist/default/production/Practica2_Fase2.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
-      <used>540</used>
-      <free>7652</free>
+      <used>562</used>
+      <free>7630</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>33018</length>
-      <used>8733</used>
-      <free>24285</free>
+      <used>9642</used>
+      <free>23376</free>
     </memory>
   </executable>
 </project>

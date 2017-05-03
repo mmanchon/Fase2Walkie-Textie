@@ -17,6 +17,7 @@
 #include <xc.h>
 #include "BlTBacklight.h"
 #include "SiTSio.h"
+#include "TPWM.h"
 #include "PbTPushbutton.h"
 #include "AuTAudio.h"
 #include "LcTLCD.h"
@@ -25,7 +26,7 @@
 
 
 #define PROPAGANDA_1 "\n\rPlaca LS69. Sistemes Digitals i uProcessadors\r\n\0"
-#define PROPAGANDA_2 "vCli v1.0. Programa de test\r\n\0"
+#define PROPAGANDA_2 "vCli v1.0.\r\n\0"
 
 
 void myItoa(int num);
@@ -44,7 +45,7 @@ void initMotorLCD(void);
 //Pre: el LCD està inicialitzat
 //Post: inicialitza el LCD per posar la marquesina a 0
 void MotorLCD(void);
-
+void printaFrase(char estat);
 
 #endif	/* PRTPROPAGANDA_H */
 

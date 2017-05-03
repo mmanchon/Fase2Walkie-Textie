@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/time.o.d ${OBJECTDIR}/LeTLeds.o.d ${OBJECTDIR}/LcTLCD.o.d ${OBJECTDIR}/AuTAudio.o.d ${OBJECTDIR}/SwTSwitch.o.d ${OBJECTDIR}/PbTPushbutton.o.d ${OBJECTDIR}/AdTADC.o.d ${OBJECTDIR}/BlTBacklight.o.d ${OBJECTDIR}/SiTSio.o.d ${OBJECTDIR}/PrTPropaganda.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/time.o.d ${OBJECTDIR}/LeTLeds.o.d ${OBJECTDIR}/LcTLCD.o.d ${OBJECTDIR}/AuTAudio.o.d ${OBJECTDIR}/SwTSwitch.o.d ${OBJECTDIR}/PbTPushbutton.o.d ${OBJECTDIR}/AdTADC.o.d ${OBJECTDIR}/BlTBacklight.o.d ${OBJECTDIR}/SiTSio.o.d ${OBJECTDIR}/PrTPropaganda.o.d ${OBJECTDIR}/TPWM.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o
 
 # Source Files
-SOURCEFILES=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c
+SOURCEFILES=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c
 
 
 CFLAGS=
@@ -171,6 +171,13 @@ ${OBJECTDIR}/PrTPropaganda.o: PrTPropaganda.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  PrTPropaganda.c  -o ${OBJECTDIR}/PrTPropaganda.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/PrTPropaganda.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/PrTPropaganda.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/TPWM.o: TPWM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TPWM.o.d 
+	@${RM} ${OBJECTDIR}/TPWM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  TPWM.c  -o ${OBJECTDIR}/TPWM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TPWM.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/TPWM.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -248,6 +255,13 @@ ${OBJECTDIR}/PrTPropaganda.o: PrTPropaganda.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/PrTPropaganda.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  PrTPropaganda.c  -o ${OBJECTDIR}/PrTPropaganda.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/PrTPropaganda.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/PrTPropaganda.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/TPWM.o: TPWM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TPWM.o.d 
+	@${RM} ${OBJECTDIR}/TPWM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  TPWM.c  -o ${OBJECTDIR}/TPWM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TPWM.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/TPWM.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
