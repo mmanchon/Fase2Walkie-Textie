@@ -12,7 +12,7 @@ static char estatLCD = 0;
 const unsigned char noID[]={"Waiting for ID  "}; //Més val que tingui 16 caràcters...
 const unsigned char noMessage[]={"Waiting message "};
 static unsigned char timerLCD, caracterInici, i,j;
-static unsigned int mostra;
+static unsigned int mostra,velocidad;
 static unsigned char segonaLinia[MAXCOLUMNES];
 static char ID[3];
 
@@ -57,7 +57,7 @@ void initPropaganda(void){
     timestamp = 0;
     timerPropaganda= TiGetTimer();
     estatPropaganda = 0;
-    nouID = 0;
+    nouID = velocidad = 0;
 }
 
 void MotorPropaganda(void){
@@ -333,11 +333,21 @@ void MotorLCD(void){
             break;
         case 2: //Aquí faig l'itoa, que deu trigar una bona estona el pobre...
             mostra = AdGetMostra();
-            myItoa(mostra);
+            /*myItoa(mostra);
+            segonaLinia[0]=temp[0];
+            segonaLinia[1]=temp[1];
+            segonaLinia[2]=temp[2];
+            segonaLinia[3]=temp[3];*/
+            velocidad = CalcularVelocidad(mostra);
+            //myItoa(velocidad);
+            /*segonaLinia[5]=temp[0];
+            segonaLinia[6]=temp[1];
+            segonaLinia[7]=temp[2];
+            segonaLinia[8]=temp[3];*/
             estatLCD = 3;
             break;
         case 3:
-            if (TiGetTics(timerLCD)>50){
+            if (TiGetTics(timerLCD)>velocidad){
                 //Observo que si estresso molt al LCD arriba un punt que alguna
                 //vegada pinta malament un caràcter. Deu tenir una cua interna?
                 //si la té, aposto a que és de 24 posicions (mal número)...
@@ -391,6 +401,17 @@ void printaFrase(char estat){
             break;
 
     }
+}
+
+
+unsigned int CalcularVelocidad(unsigned int x){
+    //Sabemos que es lineal y que por x=0 los tics(y)) seran 200 y por x=1024 los tics seran 2000
+    //Asi que la equacion se define como y=mx+b(b=200,m=1.757)
+    unsigned int num;
+    //num = (200+((1800/1023)*x));
+    num = x*9/5+200;
+    return num;
+    //return (2000*x)/1023;
 }
 /*
  *

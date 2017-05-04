@@ -26,5 +26,7 @@ char getPB2(void);
 
 void MotorPulsador();
 
+unsigned int CalcularVelocidad(unsigned int x);
+
 #endif	/* PBTPUSHBUTTON_H */
 
