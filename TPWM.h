@@ -59,6 +59,7 @@ void MotorPWM(int i);
 void PutPWMOFF(int i);
 void PutPWMON(int i);
 void SetPWMID(char ID[3]);
+char PWMEqualsID(char var,char ID);
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

@@ -70,11 +70,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xce           0x135  (309)
 .const                       0x2ce               0x2a8           0x3fc  (1020)
-.text                        0x576              0x151e          0x1fad  (8109)
-.dinit                      0x1a94                0x4a            0x6f  (111)
-.text                       0x1ade                0x3e            0x5d  (93)
+.text                        0x576              0x1556          0x2001  (8193)
+.dinit                      0x1acc                0x50            0x78  (120)
+.text                       0x1b1c                0x88            0xcc  (204)
 
-                 Total program memory used (bytes):         0x25aa  (9642) 29%
+                 Total program memory used (bytes):         0x2676  (9846) 29%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0xfc]
@@ -89,10 +89,10 @@ Data Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x36  (54)
-.bss                         0x836                   0           0x1fc  (508)
+.nbss                        0x800                   0            0x38  (56)
+.bss                         0x838                   0           0x202  (514)
 
-                 Total data memory used (bytes):          0x232  (562) 6%
+                 Total data memory used (bytes):          0x23a  (570) 6%
 
 
 Dynamic Memory Usage
@@ -100,18 +100,18 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xa32                              0x1dce  (7630)
+stack                        0xa3a                              0x1dc6  (7622)
 
-                 Maximum dynamic memory (bytes):         0x1dce  (7630)
+                 Maximum dynamic memory (bytes):         0x1dc6  (7622)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0976                  _s_Timers
+                    0x0978                  _s_Timers
 
 External Symbols in Data Memory (by name):
 
-                    0x0976                  _s_Timers
+                    0x0978                  _s_Timers
 
 External Symbols in Program Memory (by address):
 
@@ -125,143 +125,147 @@ External Symbols in Program Memory (by address):
                   0x000576                  _myItoa
                   0x00060e                  _Menu
                   0x00063c                  _initPropaganda
-                  0x000670                  _MotorPropaganda
-                  0x0009d8                  _initMotorLCD
-                  0x000a4c                  _MotorLCD
-                  0x000bf8                  _printaFrase
-                  0x000c2a                  _LcInit
-                  0x000cce                  _LcEnd
-                  0x000cda                  _LcClear
-                  0x000cec                  _LcCursorOn
-                  0x000cf8                  _LcCursorOff
-                  0x000d04                  _LcGotoXY
-                  0x000d7e                  _LcPutChar
-                  0x000dfc                  _LcPutString
-                  0x000e16                  _Espera
-                  0x000e34                  _CantaPartAlta
-                  0x000ea8                  _CantaPartBaixa
-                  0x000f1a                  _CantaIR
-                  0x000fb8                  _CantaData
-                  0x001056                  _WaitForBusy
-                  0x0010d0                  _EscriuPrimeraOrdre
-                  0x00118a                  _SiInit
-                  0x0011fe                  _MotorSIO
-                  0x00126c                  _SiPuts
-                  0x001286                  _SiPutsCooperatiu
-                  0x001292                  _SiCharAvail
-                  0x00129c                  _SiGetChar
-                  0x0012a4                  _SiSendChar
-                  0x001362                  __U1RXInterrupt
-                  0x00138e                  _PbInit
-                  0x0013a4                  _MotorPulsador
-                  0x00152a                  _getPB1
-                  0x00153e                  _getPB2
-                  0x001552                  _PWMInit
-                  0x00158c                  _MotorPWM
-                  0x001666                  _PutPWMOFF
-                  0x001688                  _PutPWMON
-                  0x0016aa                  _TimerInit
-                  0x0016b0                  __T1Interrupt
-                  0x001708                  _TiInit
-                  0x001738                  _TiGetTimer
-                  0x00176e                  _TiResetTics
-                  0x001782                  _TiGetTics
-                  0x00179e                  _TiCloseTimer
-                  0x0017b2                  _TiEnd
-                  0x0017b8                  _LeInit
-                  0x0017ce                  _MotorLed
-                  0x0018b4                  _AuInit
-                  0x0018ca                  _getAudioPeriode
-                  0x0018d2                  _setAudioPeriode
-                  0x0018e0                  _getAudioStatus
-                  0x0018f2                  _MotorAudio
-                  0x001944                  _changeAudioStatus
-                  0x001964                  _BlInit
-                  0x00197a                  _BlMotor
-                  0x0019c8                  _getBlDuty
-                  0x0019d0                  _setBlDuty
-                  0x0019dc                  _AdInit
-                  0x001a42                  _AdGetMostra
-                  0x001a4a                  _initCPU
-                  0x001a54                  _main
-                  0x001ade                  _SwInit
-                  0x001af0                  _getSwitch1
-                  0x001b06                  _getSwitch2
+                  0x000672                  _MotorPropaganda
+                  0x0009de                  _initMotorLCD
+                  0x000a52                  _MotorLCD
+                  0x000c10                  _printaFrase
+                  0x000c42                  _LcInit
+                  0x000ce6                  _LcEnd
+                  0x000cf2                  _LcClear
+                  0x000d04                  _LcCursorOn
+                  0x000d10                  _LcCursorOff
+                  0x000d1c                  _LcGotoXY
+                  0x000d96                  _LcPutChar
+                  0x000e14                  _LcPutString
+                  0x000e2e                  _Espera
+                  0x000e4c                  _CantaPartAlta
+                  0x000ec0                  _CantaPartBaixa
+                  0x000f32                  _CantaIR
+                  0x000fd0                  _CantaData
+                  0x00106e                  _WaitForBusy
+                  0x0010e8                  _EscriuPrimeraOrdre
+                  0x0011a2                  _SiInit
+                  0x001216                  _MotorSIO
+                  0x001284                  _SiPuts
+                  0x00129e                  _SiPutsCooperatiu
+                  0x0012aa                  _SiCharAvail
+                  0x0012b4                  _SiGetChar
+                  0x0012bc                  _SiSendChar
+                  0x00137a                  __U1RXInterrupt
+                  0x0013a6                  _PbInit
+                  0x0013bc                  _MotorPulsador
+                  0x001542                  _getPB1
+                  0x001556                  _getPB2
+                  0x00156a                  _PWMInit
+                  0x0015b6                  _MotorPWM
+                  0x0016a8                  _PutPWMOFF
+                  0x0016ca                  _PutPWMON
+                  0x0016ec                  _SetPWMID
+                  0x001710                  _PWMEqualsID
+                  0x00172c                  _TimerInit
+                  0x001732                  __T1Interrupt
+                  0x00178a                  _TiInit
+                  0x0017ba                  _TiGetTimer
+                  0x0017f0                  _TiResetTics
+                  0x001804                  _TiGetTics
+                  0x001820                  _TiCloseTimer
+                  0x001834                  _TiEnd
+                  0x00183a                  _LeInit
+                  0x001850                  _MotorLed
+                  0x001936                  _AuInit
+                  0x00194c                  _getAudioPeriode
+                  0x001954                  _setAudioPeriode
+                  0x001962                  _getAudioStatus
+                  0x001974                  _MotorAudio
+                  0x0019c6                  _changeAudioStatus
+                  0x0019e6                  _BlInit
+                  0x0019fc                  _BlMotor
+                  0x001a4a                  _getBlDuty
+                  0x001a52                  _setBlDuty
+                  0x001a5e                  _AdInit
+                  0x001ac4                  _AdGetMostra
+                  0x001b1c                  _initCPU
+                  0x001b26                  _main
+                  0x001b66                  _SwInit
+                  0x001b78                  _getSwitch1
+                  0x001b8e                  _getSwitch2
 
 External Symbols in Program Memory (by name):
 
-                  0x001a42                  _AdGetMostra
-                  0x0019dc                  _AdInit
-                  0x0018b4                  _AuInit
-                  0x001964                  _BlInit
-                  0x00197a                  _BlMotor
-                  0x000fb8                  _CantaData
-                  0x000f1a                  _CantaIR
-                  0x000e34                  _CantaPartAlta
-                  0x000ea8                  _CantaPartBaixa
-                  0x0010d0                  _EscriuPrimeraOrdre
-                  0x000e16                  _Espera
-                  0x000cda                  _LcClear
-                  0x000cf8                  _LcCursorOff
-                  0x000cec                  _LcCursorOn
-                  0x000cce                  _LcEnd
-                  0x000d04                  _LcGotoXY
-                  0x000c2a                  _LcInit
-                  0x000d7e                  _LcPutChar
-                  0x000dfc                  _LcPutString
-                  0x0017b8                  _LeInit
+                  0x001ac4                  _AdGetMostra
+                  0x001a5e                  _AdInit
+                  0x001936                  _AuInit
+                  0x0019e6                  _BlInit
+                  0x0019fc                  _BlMotor
+                  0x000fd0                  _CantaData
+                  0x000f32                  _CantaIR
+                  0x000e4c                  _CantaPartAlta
+                  0x000ec0                  _CantaPartBaixa
+                  0x0010e8                  _EscriuPrimeraOrdre
+                  0x000e2e                  _Espera
+                  0x000cf2                  _LcClear
+                  0x000d10                  _LcCursorOff
+                  0x000d04                  _LcCursorOn
+                  0x000ce6                  _LcEnd
+                  0x000d1c                  _LcGotoXY
+                  0x000c42                  _LcInit
+                  0x000d96                  _LcPutChar
+                  0x000e14                  _LcPutString
+                  0x00183a                  _LeInit
                   0x00060e                  _Menu
-                  0x0018f2                  _MotorAudio
-                  0x000a4c                  _MotorLCD
-                  0x0017ce                  _MotorLed
-                  0x00158c                  _MotorPWM
-                  0x000670                  _MotorPropaganda
-                  0x0013a4                  _MotorPulsador
-                  0x0011fe                  _MotorSIO
-                  0x001552                  _PWMInit
-                  0x00138e                  _PbInit
-                  0x001666                  _PutPWMOFF
-                  0x001688                  _PutPWMON
-                  0x001292                  _SiCharAvail
-                  0x00129c                  _SiGetChar
-                  0x00118a                  _SiInit
-                  0x00126c                  _SiPuts
-                  0x001286                  _SiPutsCooperatiu
-                  0x0012a4                  _SiSendChar
-                  0x001ade                  _SwInit
-                  0x00179e                  _TiCloseTimer
-                  0x0017b2                  _TiEnd
-                  0x001782                  _TiGetTics
-                  0x001738                  _TiGetTimer
-                  0x001708                  _TiInit
-                  0x00176e                  _TiResetTics
-                  0x0016aa                  _TimerInit
-                  0x001056                  _WaitForBusy
+                  0x001974                  _MotorAudio
+                  0x000a52                  _MotorLCD
+                  0x001850                  _MotorLed
+                  0x0015b6                  _MotorPWM
+                  0x000672                  _MotorPropaganda
+                  0x0013bc                  _MotorPulsador
+                  0x001216                  _MotorSIO
+                  0x001710                  _PWMEqualsID
+                  0x00156a                  _PWMInit
+                  0x0013a6                  _PbInit
+                  0x0016a8                  _PutPWMOFF
+                  0x0016ca                  _PutPWMON
+                  0x0016ec                  _SetPWMID
+                  0x0012aa                  _SiCharAvail
+                  0x0012b4                  _SiGetChar
+                  0x0011a2                  _SiInit
+                  0x001284                  _SiPuts
+                  0x00129e                  _SiPutsCooperatiu
+                  0x0012bc                  _SiSendChar
+                  0x001b66                  _SwInit
+                  0x001820                  _TiCloseTimer
+                  0x001834                  _TiEnd
+                  0x001804                  _TiGetTics
+                  0x0017ba                  _TiGetTimer
+                  0x00178a                  _TiInit
+                  0x0017f0                  _TiResetTics
+                  0x00172c                  _TimerInit
+                  0x00106e                  _WaitForBusy
                   0x0002c8                  __DefaultInterrupt
-                  0x0016b0                  __T1Interrupt
-                  0x001362                  __U1RXInterrupt
+                  0x001732                  __T1Interrupt
+                  0x00137a                  __U1RXInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x001944                  _changeAudioStatus
-                  0x0018ca                  _getAudioPeriode
-                  0x0018e0                  _getAudioStatus
-                  0x0019c8                  _getBlDuty
-                  0x00152a                  _getPB1
-                  0x00153e                  _getPB2
-                  0x001af0                  _getSwitch1
-                  0x001b06                  _getSwitch2
-                  0x001a4a                  _initCPU
-                  0x0009d8                  _initMotorLCD
+                  0x0019c6                  _changeAudioStatus
+                  0x00194c                  _getAudioPeriode
+                  0x001962                  _getAudioStatus
+                  0x001a4a                  _getBlDuty
+                  0x001542                  _getPB1
+                  0x001556                  _getPB2
+                  0x001b78                  _getSwitch1
+                  0x001b8e                  _getSwitch2
+                  0x001b1c                  _initCPU
+                  0x0009de                  _initMotorLCD
                   0x00063c                  _initPropaganda
-                  0x001a54                  _main
+                  0x001b26                  _main
                   0x000576                  _myItoa
                   0x0002ce                  _noID
                   0x0002df                  _noMessage
-                  0x000bf8                  _printaFrase
-                  0x0018d2                  _setAudioPeriode
-                  0x0019d0                  _setBlDuty
+                  0x000c10                  _printaFrase
+                  0x001954                  _setAudioPeriode
+                  0x001a52                  _setBlDuty
 
 Memory Configuration
 
@@ -346,7 +350,7 @@ __CONFIG1         0x0057fe          0x2
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3f51
+.debug_info       0x000000       0x4023
  *(.debug_info)
  .debug_info      0x000000        0x2f1 build/default/production/main.o
  .debug_info      0x0002f1        0x668 build/default/production/time.o
@@ -358,11 +362,11 @@ __CONFIG1         0x0057fe          0x2
  .debug_info      0x0021c1        0x509 build/default/production/AdTADC.o
  .debug_info      0x0026ca        0x4ac build/default/production/BlTBacklight.o
  .debug_info      0x002b76        0xcec build/default/production/SiTSio.o
- .debug_info      0x003862        0x3c1 build/default/production/PrTPropaganda.o
- .debug_info      0x003c23        0x32e build/default/production/TPWM.o
+ .debug_info      0x003862        0x3d4 build/default/production/PrTPropaganda.o
+ .debug_info      0x003c36        0x3ed build/default/production/TPWM.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xb82
+.debug_abbrev     0x000000        0xba4
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0xde build/default/production/main.o
  .debug_abbrev    0x0000de        0x189 build/default/production/time.o
@@ -375,9 +379,9 @@ __CONFIG1         0x0057fe          0x2
  .debug_abbrev    0x000758         0xc9 build/default/production/BlTBacklight.o
  .debug_abbrev    0x000821        0x18d build/default/production/SiTSio.o
  .debug_abbrev    0x0009ae        0x110 build/default/production/PrTPropaganda.o
- .debug_abbrev    0x000abe         0xc4 build/default/production/TPWM.o
+ .debug_abbrev    0x000abe         0xe6 build/default/production/TPWM.o
 
-.debug_line       0x000000        0xa69
+.debug_line       0x000000        0xa83
  *(.debug_line)
  .debug_line      0x000000         0xab build/default/production/main.o
  .debug_line      0x0000ab         0xc0 build/default/production/time.o
@@ -389,10 +393,10 @@ __CONFIG1         0x0057fe          0x2
  .debug_line      0x0005cd         0xa4 build/default/production/AdTADC.o
  .debug_line      0x000671         0xb3 build/default/production/BlTBacklight.o
  .debug_line      0x000724         0xee build/default/production/SiTSio.o
- .debug_line      0x000812        0x180 build/default/production/PrTPropaganda.o
- .debug_line      0x000992         0xd7 build/default/production/TPWM.o
+ .debug_line      0x000812        0x188 build/default/production/PrTPropaganda.o
+ .debug_line      0x00099a         0xe9 build/default/production/TPWM.o
 
-.debug_frame      0x000000        0x8b8
+.debug_frame      0x000000        0x8f0
  *(.debug_frame)
  .debug_frame     0x000000         0x4c build/default/production/main.o
  .debug_frame     0x00004c        0x106 build/default/production/time.o
@@ -405,7 +409,7 @@ __CONFIG1         0x0057fe          0x2
  .debug_frame     0x00054a         0x84 build/default/production/BlTBacklight.o
  .debug_frame     0x0005ce        0x188 build/default/production/SiTSio.o
  .debug_frame     0x000756         0xde build/default/production/PrTPropaganda.o
- .debug_frame     0x000834         0x84 build/default/production/TPWM.o
+ .debug_frame     0x000834         0xbc build/default/production/TPWM.o
 
 .debug_str        0x000000        0x160
  *(.debug_str)
@@ -429,7 +433,7 @@ __CONFIG1         0x0057fe          0x2
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x4bb
+                  0x000000        0x4d8
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x41 build/default/production/main.o
@@ -454,7 +458,7 @@ __CONFIG1         0x0057fe          0x2
  .debug_pubnames
                   0x0003e3         0x92 build/default/production/PrTPropaganda.o
  .debug_pubnames
-                  0x000475         0x46 build/default/production/TPWM.o
+                  0x000475         0x63 build/default/production/TPWM.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1128,7 +1132,7 @@ __c30_signature
  __c30_signature
                   0x00060f          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
 
-.nbss               0x0800         0x36
+.nbss               0x0800         0x38
  .nbss              0x0800         0x10 build/default/production/PrTPropaganda.o
  .nbss              0x0810          0xa build/default/production/SiTSio.o
  .nbss              0x081a          0x6 build/default/production/LeTLeds.o
@@ -1137,13 +1141,14 @@ __c30_signature
  .nbss              0x082a          0x4 build/default/production/AuTAudio.o
  .nbss              0x082e          0x4 build/default/production/PbTPushbutton.o
  .nbss              0x0832          0x4 build/default/production/BlTBacklight.o
+ .nbss              0x0836          0x2 build/default/production/TPWM.o
 
-.bss                0x0836        0x1fc
- .bss               0x0836        0x140 build/default/production/SiTSio.o
- .bss               0x0976         0x64 build/default/production/time.o
-                    0x0976                  _s_Timers
- .bss               0x09da         0x48 build/default/production/PrTPropaganda.o
- .bss               0x0a22         0x10 build/default/production/TPWM.o
+.bss                0x0838        0x202
+ .bss               0x0838        0x140 build/default/production/SiTSio.o
+ .bss               0x0978         0x64 build/default/production/time.o
+                    0x0978                  _s_Timers
+ .bss               0x09dc         0x48 build/default/production/PrTPropaganda.o
+ .bss               0x0a24         0x16 build/default/production/TPWM.o
 
 .ivt._T1Interrupt
                   0x00001a          0x2
@@ -1161,86 +1166,88 @@ __c30_signature
                     0x82df                  _noMessage
  .const             0x856a          0xc build/default/production/main.o
 
-.text             0x000576       0x151e
- .text            0x000576        0x6b4 build/default/production/PrTPropaganda.o
+.text             0x000576       0x1556
+ .text            0x000576        0x6cc build/default/production/PrTPropaganda.o
                   0x000576                  _myItoa
                   0x00060e                  _Menu
                   0x00063c                  _initPropaganda
-                  0x000670                  _MotorPropaganda
-                  0x0009d8                  _initMotorLCD
-                  0x000a4c                  _MotorLCD
-                  0x000bf8                  _printaFrase
- .text            0x000c2a        0x560 build/default/production/LcTLCD.o
-                  0x000c2a                  _LcInit
-                  0x000cce                  _LcEnd
-                  0x000cda                  _LcClear
-                  0x000cec                  _LcCursorOn
-                  0x000cf8                  _LcCursorOff
-                  0x000d04                  _LcGotoXY
-                  0x000d7e                  _LcPutChar
-                  0x000dfc                  _LcPutString
-                  0x000e16                  _Espera
-                  0x000e34                  _CantaPartAlta
-                  0x000ea8                  _CantaPartBaixa
-                  0x000f1a                  _CantaIR
-                  0x000fb8                  _CantaData
-                  0x001056                  _WaitForBusy
-                  0x0010d0                  _EscriuPrimeraOrdre
- .text            0x00118a        0x204 build/default/production/SiTSio.o
-                  0x00118a                  _SiInit
-                  0x0011fe                  _MotorSIO
-                  0x00126c                  _SiPuts
-                  0x001286                  _SiPutsCooperatiu
-                  0x001292                  _SiCharAvail
-                  0x00129c                  _SiGetChar
-                  0x0012a4                  _SiSendChar
-                  0x001362                  __U1RXInterrupt
- .text            0x00138e        0x1c4 build/default/production/PbTPushbutton.o
-                  0x00138e                  _PbInit
-                  0x0013a4                  _MotorPulsador
-                  0x00152a                  _getPB1
-                  0x00153e                  _getPB2
- .text            0x001552        0x158 build/default/production/TPWM.o
-                  0x001552                  _PWMInit
-                  0x00158c                  _MotorPWM
-                  0x001666                  _PutPWMOFF
-                  0x001688                  _PutPWMON
- .text            0x0016aa        0x10e build/default/production/time.o
-                  0x0016aa                  _TimerInit
-                  0x0016b0                  __T1Interrupt
-                  0x001708                  _TiInit
-                  0x001738                  _TiGetTimer
-                  0x00176e                  _TiResetTics
-                  0x001782                  _TiGetTics
-                  0x00179e                  _TiCloseTimer
-                  0x0017b2                  _TiEnd
- .text            0x0017b8         0xfc build/default/production/LeTLeds.o
-                  0x0017b8                  _LeInit
-                  0x0017ce                  _MotorLed
- .text            0x0018b4         0xb0 build/default/production/AuTAudio.o
-                  0x0018b4                  _AuInit
-                  0x0018ca                  _getAudioPeriode
-                  0x0018d2                  _setAudioPeriode
-                  0x0018e0                  _getAudioStatus
-                  0x0018f2                  _MotorAudio
-                  0x001944                  _changeAudioStatus
- .text            0x001964         0x78 build/default/production/BlTBacklight.o
-                  0x001964                  _BlInit
-                  0x00197a                  _BlMotor
-                  0x0019c8                  _getBlDuty
-                  0x0019d0                  _setBlDuty
- .text            0x0019dc         0x6e build/default/production/AdTADC.o
-                  0x0019dc                  _AdInit
-                  0x001a42                  _AdGetMostra
- .text            0x001a4a         0x4a build/default/production/main.o
-                  0x001a4a                  _initCPU
-                  0x001a54                  _main
+                  0x000672                  _MotorPropaganda
+                  0x0009de                  _initMotorLCD
+                  0x000a52                  _MotorLCD
+                  0x000c10                  _printaFrase
+ .text            0x000c42        0x560 build/default/production/LcTLCD.o
+                  0x000c42                  _LcInit
+                  0x000ce6                  _LcEnd
+                  0x000cf2                  _LcClear
+                  0x000d04                  _LcCursorOn
+                  0x000d10                  _LcCursorOff
+                  0x000d1c                  _LcGotoXY
+                  0x000d96                  _LcPutChar
+                  0x000e14                  _LcPutString
+                  0x000e2e                  _Espera
+                  0x000e4c                  _CantaPartAlta
+                  0x000ec0                  _CantaPartBaixa
+                  0x000f32                  _CantaIR
+                  0x000fd0                  _CantaData
+                  0x00106e                  _WaitForBusy
+                  0x0010e8                  _EscriuPrimeraOrdre
+ .text            0x0011a2        0x204 build/default/production/SiTSio.o
+                  0x0011a2                  _SiInit
+                  0x001216                  _MotorSIO
+                  0x001284                  _SiPuts
+                  0x00129e                  _SiPutsCooperatiu
+                  0x0012aa                  _SiCharAvail
+                  0x0012b4                  _SiGetChar
+                  0x0012bc                  _SiSendChar
+                  0x00137a                  __U1RXInterrupt
+ .text            0x0013a6        0x1c4 build/default/production/PbTPushbutton.o
+                  0x0013a6                  _PbInit
+                  0x0013bc                  _MotorPulsador
+                  0x001542                  _getPB1
+                  0x001556                  _getPB2
+ .text            0x00156a        0x1c2 build/default/production/TPWM.o
+                  0x00156a                  _PWMInit
+                  0x0015b6                  _MotorPWM
+                  0x0016a8                  _PutPWMOFF
+                  0x0016ca                  _PutPWMON
+                  0x0016ec                  _SetPWMID
+                  0x001710                  _PWMEqualsID
+ .text            0x00172c        0x10e build/default/production/time.o
+                  0x00172c                  _TimerInit
+                  0x001732                  __T1Interrupt
+                  0x00178a                  _TiInit
+                  0x0017ba                  _TiGetTimer
+                  0x0017f0                  _TiResetTics
+                  0x001804                  _TiGetTics
+                  0x001820                  _TiCloseTimer
+                  0x001834                  _TiEnd
+ .text            0x00183a         0xfc build/default/production/LeTLeds.o
+                  0x00183a                  _LeInit
+                  0x001850                  _MotorLed
+ .text            0x001936         0xb0 build/default/production/AuTAudio.o
+                  0x001936                  _AuInit
+                  0x00194c                  _getAudioPeriode
+                  0x001954                  _setAudioPeriode
+                  0x001962                  _getAudioStatus
+                  0x001974                  _MotorAudio
+                  0x0019c6                  _changeAudioStatus
+ .text            0x0019e6         0x78 build/default/production/BlTBacklight.o
+                  0x0019e6                  _BlInit
+                  0x0019fc                  _BlMotor
+                  0x001a4a                  _getBlDuty
+                  0x001a52                  _setBlDuty
+ .text            0x001a5e         0x6e build/default/production/AdTADC.o
+                  0x001a5e                  _AdInit
+                  0x001ac4                  _AdGetMostra
 
-.dinit            0x001a94         0x4a
- .dinit           0x001a94         0x4a data_init
+.dinit            0x001acc         0x50
+ .dinit           0x001acc         0x50 data_init
 
-.text             0x001ade         0x3e
- .text            0x001ade         0x3e build/default/production/SwTSwitch.o
-                  0x001ade                  _SwInit
-                  0x001af0                  _getSwitch1
-                  0x001b06                  _getSwitch2
+.text             0x001b1c         0x88
+ .text            0x001b1c         0x4a build/default/production/main.o
+                  0x001b1c                  _initCPU
+                  0x001b26                  _main
+ .text            0x001b66         0x3e build/default/production/SwTSwitch.o
+                  0x001b66                  _SwInit
+                  0x001b78                  _getSwitch1
+                  0x001b8e                  _getSwitch2

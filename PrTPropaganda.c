@@ -3,7 +3,7 @@
 
 static int timestamp,numeroChar;
 static char timerPropaganda, estatPropaganda;
-static char temp[50], opcio, hihaID;
+static char temp[50], opcio, hihaID, nouID;
 static char IDtemp[3];
 
 
@@ -57,6 +57,7 @@ void initPropaganda(void){
     timestamp = 0;
     timerPropaganda= TiGetTimer();
     estatPropaganda = 0;
+    nouID = 0;
 }
 
 void MotorPropaganda(void){
@@ -100,8 +101,8 @@ void MotorPropaganda(void){
                 Menu();
                 estatPropaganda = 0;
                 numeroChar = 2;
+                nouID=1;
                 hihaID = 1;
-                SetPWMID(ID);
             }
             break;
 
@@ -306,19 +307,23 @@ void MotorLCD(void){
             break;
 
         case 1: //Preparo el string
-            if(hihaID != 1){
-                ID[0]++;
-                ID[1]++;
-                ID[2]++;
-                if(ID[0] > '9'){
-                    ID[0] = '0';
-                    ID[1] = '0';
-                    ID[2] = '0';
+            if(nouID != 1){
+                if(hihaID == 0){
+                    ID[0]++;
+                    ID[1]++;
+                    ID[2]++;
+                    if(ID[0] > '9'){
+                        ID[0] = '0';
+                        ID[1] = '0';
+                        ID[2] = '0';
+                    }
                 }
-            }else{
+            }else if(nouID == 1){
                 ID[0] = IDtemp[0];
                 ID[1] = IDtemp[1];
                 ID[2] = IDtemp[2];
+                SetPWMID(ID);
+                nouID = 0;
             }
             
             segonaLinia[13] = ID[2];

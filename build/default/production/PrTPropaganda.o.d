@@ -4,8 +4,9 @@ PrTPropaganda.h  \
  BlTBacklight.h  \
 time.h  \
 SiTSio.h  \
+TPWM.h  \
 PbTPushbutton.h  \
 AuTAudio.h  \
-LcTLCD.h  \
- AdTADC.h  \
+ LcTLCD.h  \
+AdTADC.h  \
 SwTSwitch.h 

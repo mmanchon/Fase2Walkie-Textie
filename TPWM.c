@@ -4,8 +4,8 @@
 
 static unsigned char timerPWM[3];
 static unsigned char estatPWM[3];
-static unsigned char T0[3],T1[3],var[3];
-static char ID[3],hihaID,trobat[3];
+static unsigned char T0[3],T1[3];
+static char ID[3],nouID,trobat[3],var[3];
 
 void PWMInit(){
     SET_PWM_DIR1();
@@ -24,7 +24,7 @@ void PWMInit(){
         ID[i] = '0';
         trobat[i] =0;
     }
-    hihaID =0;
+    nouID =0;
     //timerPWM = TiGetTimer();
     //estatPWM = 0;
     //var = 0;
@@ -73,7 +73,9 @@ void MotorPWM(int i){
         case 2:
             PutPWMON(i);
             if(TiGetTics(timerPWM[i]) >= T1[i]*2){
-                var[i]++;
+                if(PWMEqualsID(var[i],ID[i]) != 1 || nouID == 0){
+                    var[i]++;
+                }
                 if(var[i] > 9)var[i]=0;
                 PutPWMOFF(i);
                 estatPWM[i] = 0;
@@ -137,5 +139,13 @@ void SetPWMID(char aux[3]){
     ID[0] = aux[0];
     ID[1] = aux[1];
     ID[2] = aux[2];
-    hihaID = 1;
+    nouID = 1;
+}
+
+char PWMEqualsID(char var,char ID){
+    if(var == (ID-'0')){
+        return 1;
+    }else{
+        return 0;
+    }
 }
