@@ -33,6 +33,7 @@ char getAudioPeriode(void);
 void setAudioPeriode(char nouPeriode);
 // Pre: nouPeriode >= 1
 
+void setMelodia(char aux[10]);
 
 
 #endif	/* AUTAUDIO_H */

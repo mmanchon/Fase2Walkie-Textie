@@ -1,13 +1,20 @@
 #include "AuTAudio.h"
 #include <xc.h>
 static char timerAudio, estat,periode;
+static char melodia[10], hihaMelodia;
+static int qMelodia;
 
 void AuInit(){
+    int i;
+    for(i=0;i<10;i++){
+        melodia[i] = 0;
+    }
     SET_AUDIO_DIR();
     AUDIO_OFF();
     timerAudio = TiGetTimer();
-    estat = 0;
-    periode = 1;
+    estat = hihaMelodia = 0;
+    periode = TiGetTimer();
+    qMelodia = 0;
 }
 
 char getAudioPeriode(void){
@@ -23,24 +30,46 @@ char getAudioStatus(void){
     return estat != 2;
 }
 
+void setMelodia(char aux[10]){
+    int i;
+    for(i=0;i<10;i++){
+        melodia[i] = aux[i];
+    }
+    hihaMelodia = 1;
+}
+
 void MotorAudio(){
     switch(estat){
         case 0:
-            if (TiGetTics(timerAudio)>=periode){
+            if(hihaMelodia == 1){
+                estat=1;
                 TiResetTics(timerAudio);
-                AUDIO_ON();
-                estat = 1;
+                TiResetTics(periode);
             }
             break;
         case 1:
-            if (TiGetTics(timerAudio)>=periode){
+            if (TiGetTics(timerAudio)>=melodia[qMelodia]){
                 TiResetTics(timerAudio);
-                AUDIO_OFF();
-                estat = 0;
+                AUDIO_ON();
+                estat = 2;
             }
             break;
         case 2:
-            //Callo
+            if (TiGetTics(timerAudio)>=melodia[qMelodia]){
+                TiResetTics(timerAudio);
+                AUDIO_OFF();
+                estat = 3;
+            }
+            break;
+        case 3:
+            if(TiGetTics(periode) >= 1000){
+                TiResetTics(periode);
+                qMelodia++;
+                if(qMelodia > 3){
+                    qMelodia = 0;
+                }
+            }
+            estat = 1;
             break;
     }
 }

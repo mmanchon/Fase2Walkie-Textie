@@ -14,7 +14,7 @@ const unsigned char noMessage[]={"Waiting message "};
 static unsigned char timerLCD, caracterInici, i,j;
 static unsigned int mostra,velocidad;
 static unsigned char segonaLinia[MAXCOLUMNES];
-static char ID[3];
+static char ID[3], melodia[10] = {3,2,1,2};
 
 void myItoa(int num){
     //Post: escriu el valor ascii de num a tmp;
@@ -37,7 +37,7 @@ void Menu(void){
     SiPutsCooperatiu("1-Introduir un nou identificador\r\n\0");
     SiPutsCooperatiu("2-Consultar ID actual\r\n\0");
     SiPutsCooperatiu("3-Consultar trames identificades\r\n\0");
-    SiPutsCooperatiu("4-Consultar trames rebudes totals\r\n\0");
+    SiPutsCooperatiu("4-Proba de altaveu\r\n\0");
     SiPutsCooperatiu("5-Visualitzar l'ultim missatge rebut\r\n\0");
     SiPutsCooperatiu("6-Reset\r\n\n\0");
     SiPutsCooperatiu("\r\n\0");
@@ -156,7 +156,7 @@ void MotorPropaganda(void){
             }
             break;
         case 4:
-            if (TiGetTics(timerPropaganda) > 1000){
+            /*if (TiGetTics(timerPropaganda) > 1000){
                 TiResetTics(timerPropaganda);
                 if (++timestamp == 10000) timestamp=0;
                 SiSendChar('\r');
@@ -170,7 +170,12 @@ void MotorPropaganda(void){
                     Menu();
                     estatPropaganda=0;
                 }
-            }
+            }*/
+            /*SiPutsCooperatiu("\n\rPrem J per encendre o apagar l'altaveu \n\r");
+            if (getAudioStatus()) SiPutsCooperatiu("\rAltaveu ences! \0");
+                        else SiPutsCooperatiu("\rAltaveu apagat!\0");
+            estatPropaganda = 61;*/
+            setMelodia(melodia);
             break;
         case 5:
             SiPutsCooperatiu("\n\rIntrodueix valor de la nova intensitat (0-4):\n\r");
