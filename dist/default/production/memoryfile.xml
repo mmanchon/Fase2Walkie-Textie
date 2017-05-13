@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/Practica2_Fase2.production.elf">
+  <executable name="dist/default/production/Fase2Walkie-Textie.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
-      <used>594</used>
-      <free>7598</free>
+      <used>902</used>
+      <free>7290</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>33018</length>
-      <used>9993</used>
-      <free>23025</free>
+      <used>10422</used>
+      <free>22596</free>
     </memory>
   </executable>
 </project>

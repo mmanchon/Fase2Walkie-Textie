@@ -22,6 +22,7 @@
 #include "BlTBacklight.h"
 #include "SiTSio.h"
 #include "PrTPropaganda.h"
+#include "TAD_RF.h"
 /*
  * 
  */
@@ -82,6 +83,7 @@ int main(void){
     LcPutString("Booting...");
     initMotorLCD();
     initPropaganda();
+    InitRF();
     while(1){
         
        // MotorLed();
@@ -92,6 +94,7 @@ int main(void){
         MotorAudio();
         MotorPropaganda();
         MotorSIO();
+        MotorRF();
     }
 }
 

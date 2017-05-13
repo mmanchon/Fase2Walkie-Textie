@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Practica2_Fase2
+PROJECTNAME=Fase2Walkie-Textie
 
 # Active Configuration
 DEFAULTCONF=default
