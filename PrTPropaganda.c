@@ -418,6 +418,12 @@ unsigned int CalcularVelocidad(unsigned int x){
     return num;
     //return (2000*x)/1023;
 }
+
+void putNewId(char aux[3]){
+    ID[0] = aux[0] + '0';
+    ID[1] = aux[1] + '0';
+    ID[2] = aux[2] + '0';
+}
 /*
  *
  *          Fi  PROPAGANDAAAAAAAAAA!!!!

@@ -46,6 +46,7 @@ void initMotorLCD(void);
 //Post: inicialitza el LCD per posar la marquesina a 0
 void MotorLCD(void);
 void printaFrase(char estat);
+void putNewId(char aux[3]);
 
 #endif	/* PRTPROPAGANDA_H */
 
