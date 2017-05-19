@@ -23,6 +23,7 @@
 #include "SiTSio.h"
 #include "PrTPropaganda.h"
 #include "TAD_RF.h"
+#include "TAD_MSG.h"
 /*
  * 
  */
@@ -84,6 +85,7 @@ int main(void){
     initMotorLCD();
     initPropaganda();
     InitRF();
+    initMSG();
     while(1){
         
        // MotorLed();

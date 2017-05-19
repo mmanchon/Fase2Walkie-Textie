@@ -23,7 +23,7 @@
 #include "LcTLCD.h"
 #include "AdTADC.h"
 #include "SwTSwitch.h"
-
+#include "TAD_MSG.h"
 
 #define PROPAGANDA_1 "\n\rPlaca LS69. Sistemes Digitals i uProcessadors\r\n\0"
 #define PROPAGANDA_2 "vCli v1.0.\r\n\0"
@@ -47,6 +47,10 @@ void initMotorLCD(void);
 void MotorLCD(void);
 void printaFrase(char estat);
 void putNewId(char aux[3]);
+
+char ComparaID(char aux[3]);
+void IncTramesRebudes(char CheckID);
+void HiHaTrama();
 
 #endif	/* PRTPROPAGANDA_H */
 

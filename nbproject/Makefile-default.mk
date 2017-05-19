@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c TAD_RF.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c TAD_RF.c TAD_MSG.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o ${OBJECTDIR}/TAD_RF.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/time.o.d ${OBJECTDIR}/LeTLeds.o.d ${OBJECTDIR}/LcTLCD.o.d ${OBJECTDIR}/AuTAudio.o.d ${OBJECTDIR}/SwTSwitch.o.d ${OBJECTDIR}/PbTPushbutton.o.d ${OBJECTDIR}/AdTADC.o.d ${OBJECTDIR}/BlTBacklight.o.d ${OBJECTDIR}/SiTSio.o.d ${OBJECTDIR}/PrTPropaganda.o.d ${OBJECTDIR}/TPWM.o.d ${OBJECTDIR}/TAD_RF.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o ${OBJECTDIR}/TAD_RF.o ${OBJECTDIR}/TAD_MSG.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/time.o.d ${OBJECTDIR}/LeTLeds.o.d ${OBJECTDIR}/LcTLCD.o.d ${OBJECTDIR}/AuTAudio.o.d ${OBJECTDIR}/SwTSwitch.o.d ${OBJECTDIR}/PbTPushbutton.o.d ${OBJECTDIR}/AdTADC.o.d ${OBJECTDIR}/BlTBacklight.o.d ${OBJECTDIR}/SiTSio.o.d ${OBJECTDIR}/PrTPropaganda.o.d ${OBJECTDIR}/TPWM.o.d ${OBJECTDIR}/TAD_RF.o.d ${OBJECTDIR}/TAD_MSG.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o ${OBJECTDIR}/TAD_RF.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/time.o ${OBJECTDIR}/LeTLeds.o ${OBJECTDIR}/LcTLCD.o ${OBJECTDIR}/AuTAudio.o ${OBJECTDIR}/SwTSwitch.o ${OBJECTDIR}/PbTPushbutton.o ${OBJECTDIR}/AdTADC.o ${OBJECTDIR}/BlTBacklight.o ${OBJECTDIR}/SiTSio.o ${OBJECTDIR}/PrTPropaganda.o ${OBJECTDIR}/TPWM.o ${OBJECTDIR}/TAD_RF.o ${OBJECTDIR}/TAD_MSG.o
 
 # Source Files
-SOURCEFILES=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c TAD_RF.c
+SOURCEFILES=main.c time.c LeTLeds.c LcTLCD.c AuTAudio.c SwTSwitch.c PbTPushbutton.c AdTADC.c BlTBacklight.c SiTSio.c PrTPropaganda.c TPWM.c TAD_RF.c TAD_MSG.c
 
 
 CFLAGS=
@@ -179,6 +179,13 @@ ${OBJECTDIR}/TAD_RF.o: TAD_RF.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  TAD_RF.c  -o ${OBJECTDIR}/TAD_RF.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TAD_RF.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/TAD_RF.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/TAD_MSG.o: TAD_MSG.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_MSG.o.d 
+	@${RM} ${OBJECTDIR}/TAD_MSG.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  TAD_MSG.c  -o ${OBJECTDIR}/TAD_MSG.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TAD_MSG.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/TAD_MSG.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -270,6 +277,13 @@ ${OBJECTDIR}/TAD_RF.o: TAD_RF.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/TAD_RF.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  TAD_RF.c  -o ${OBJECTDIR}/TAD_RF.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TAD_RF.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/TAD_RF.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/TAD_MSG.o: TAD_MSG.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_MSG.o.d 
+	@${RM} ${OBJECTDIR}/TAD_MSG.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  TAD_MSG.c  -o ${OBJECTDIR}/TAD_MSG.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/TAD_MSG.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -no-legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/TAD_MSG.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

@@ -10,4 +10,5 @@ PbTPushbutton.h  \
 AuTAudio.h  \
  LcTLCD.h  \
 AdTADC.h  \
-SwTSwitch.h 
+SwTSwitch.h  \
+TAD_MSG.h 

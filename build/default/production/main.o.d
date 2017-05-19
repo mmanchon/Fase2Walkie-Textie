@@ -10,4 +10,5 @@ BlTBacklight.h  \
 AdTADC.h  \
 SiTSio.h  \
  PrTPropaganda.h  \
+TAD_MSG.h  \
 TAD_RF.h 
