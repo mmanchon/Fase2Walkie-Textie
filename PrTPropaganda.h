@@ -27,6 +27,7 @@
 
 #define PROPAGANDA_1 "\n\rPlaca LS69. Sistemes Digitals i uProcessadors\r\n\0"
 #define PROPAGANDA_2 "vCli v1.0.\r\n\0"
+#define DB9 TRISBbits.TRISB10 = 1;
 
 
 void myItoa(int num);
@@ -50,7 +51,9 @@ void putNewId(char aux[3]);
 
 char ComparaID(char aux[3]);
 void IncTramesRebudes(char CheckID);
-void HiHaTrama();
+void HiHaTrama(unsigned int numBytes);
+void calculoMelodia(unsigned int numBytes);
+
 
 #endif	/* PRTPROPAGANDA_H */
 

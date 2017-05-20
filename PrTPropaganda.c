@@ -12,11 +12,12 @@ static char estatLCD = 0;
 const unsigned char noID[]={"Waiting for ID  "}; //Més val que tingui 16 caràcters...
 const unsigned char noMessage[]={"Waiting message "};
 const unsigned char newMessage[]={"New message!    "};
-static unsigned char timerLCD, caracterInici, i,j;
+const unsigned char recivingMSG[]={"Reciving message"};
+static unsigned char timerLCD, caracterInici, i,j,x;
 static unsigned int mostra,velocidad, timerNM;
 static unsigned char segonaLinia[MAXCOLUMNES];
-static char ID[3], melodia[10] = {3,2,1,2};
-static char tramesTotals, tramesID, character, end;
+static char ID[3], melodia[4] = {3,2,1,2};
+static char tramesTotals, tramesID, character, end, F_newMessage, reciving,enviat;
 
 void myItoa(int num){
     //Post: escriu el valor ascii de num a tmp;
@@ -39,7 +40,7 @@ void Menu(void){
     SiPutsCooperatiu("1-Introduir un nou identificador\r\n\0");
     SiPutsCooperatiu("2-Consultar ID actual\r\n\0");
     SiPutsCooperatiu("3-Consultar trames identificades\r\n\0");
-    SiPutsCooperatiu("4-Proba de altaveu\r\n\0");
+    SiPutsCooperatiu("4-Consultar trames totals\r\n\0");
     SiPutsCooperatiu("5-Visualitzar l'ultim missatge rebut\r\n\0");
     SiPutsCooperatiu("6-Reset\r\n\n\0");
     SiPutsCooperatiu("\r\n\0");
@@ -53,36 +54,44 @@ void initPropaganda(void){
         IDtemp[i] = '0';
     }
     numeroChar = 2;
-    SiPutsCooperatiu(PROPAGANDA_1);
-    SiPutsCooperatiu(PROPAGANDA_2);
-    Menu();
+
+    DB9;
+    x = 16;
     timestamp = end = 0;
     timerPropaganda= TiGetTimer();
     timerNM = TiGetTimer();
     estatPropaganda = 0;
-    nouID = velocidad = tramesTotals = tramesID = hihaMSG = i = j = caracterInici = 0;
+    nouID = velocidad = tramesTotals = tramesID = hihaMSG = i = j = caracterInici = F_newMessage = reciving = enviat = 0;
 }
 
 void MotorPropaganda(void){
 
     switch(estatPropaganda){
         case 0:
-            //Aquí estem esperant ordre del menú principal
-            if (SiCharAvail() != 0){
-                //SiPutsCooperatiu("\r\nArribo al estat 1\r\n\0");
-                opcio= SiGetChar();
-                if ((opcio <= '6') && (opcio >= '1')){
-                    estatPropaganda = opcio-'0';
-                    printaFrase(estatPropaganda);
-                 
-                }else{
-                    SiSendChar('\r');
-                    SiSendChar(opcio);
+            if (PORTBbits.RB10 != 0){
+                if (enviat == 0){
+                    Menu();
+                    enviat = 1;
                 }
-            }
-            if (TiGetTics(timerPropaganda) > 1000){
-                TiResetTics(timerPropaganda);
-                if (++timestamp == 10000) timestamp=0;
+                //Aquí estem esperant ordre del menú principal
+                if (SiCharAvail() != 0){
+                    opcio= SiGetChar();
+                    if ((opcio <= '6') && (opcio >= '1')){
+                        estatPropaganda = opcio-'0';
+                        printaFrase(estatPropaganda);
+
+                    }else{
+                        SiSendChar('\r');
+                        SiSendChar(opcio);
+                    }
+                }else{
+                    estatPropaganda =0;
+                }
+ 
+            }else{
+                //SiPutsCooperatiu("port es 0\n\r\0");
+                estatPropaganda = 0;
+                enviat = 0;
             }
             break;
         case 1:
@@ -110,7 +119,6 @@ void MotorPropaganda(void){
             break;
 
         case 2:
-            //Visualització uInterruptors
             if(TiGetTics(timerPropaganda) > 50){
                 if(hihaID == 1){
                     SiPutsCooperatiu("\r\nID: \0");
@@ -126,71 +134,40 @@ void MotorPropaganda(void){
                     estatPropaganda = 0;
                 }
             }
-            /*if (TiGetTics(timerPropaganda) > 1000){
-                TiResetTics(timerPropaganda);
-                if (++timestamp == 10000) timestamp=0;
-                SiSendChar('\r');
-                SiPutsCooperatiu("SW1: \0");
-                SiSendChar(getSwitch1()+'0');
-                estatPropaganda = 21;
-            }
-            if (SiCharAvail() != 0){
-                if (SiGetChar() == 27){
-                    Menu();
-                    estatPropaganda=0;
-                }
-            }*/
             break;
         case 3:
             
             SiPutsCooperatiu("\r\nTrames Identificades: \0");
-            SiSendChar(tramesID);
+            SiSendChar(tramesID +'0');
             SiPutsCooperatiu("\r\n\n\0");
             Menu();
             estatPropaganda = 0;
-            //Visualització pulsadors
-            /*if (TiGetTics(timerPropaganda) > 1000){
-                TiResetTics(timerPropaganda);
-                if (++timestamp == 10000) timestamp=0;
-                SiSendChar('\r');
-                SiPutsCooperatiu("PB1: \0");
-                SiSendChar(getPB1()+'0');
-                estatPropaganda = 31;
-            }
-            if (SiCharAvail() != 0){
-                if (SiGetChar() == 27){
-                    Menu();
-                    estatPropaganda=0;
-                }
-            }*/
             break;
         case 4:
-            /*if (TiGetTics(timerPropaganda) > 1000){
-                TiResetTics(timerPropaganda);
-                if (++timestamp == 10000) timestamp=0;
-                SiSendChar('\r');
-                myItoa(getBlDuty()*5);
-                SiSendChar(temp[1]);
-                SiSendChar(temp[2]);
-                SiSendChar(temp[3]);
-            }
-            if (SiCharAvail() != 0){
-                if (SiGetChar() == 27){
-                    Menu();
-                    estatPropaganda=0;
-                }
-            }*/
-            /*SiPutsCooperatiu("\n\rPrem J per encendre o apagar l'altaveu \n\r");
-            if (getAudioStatus()) SiPutsCooperatiu("\rAltaveu ences! \0");
-                        else SiPutsCooperatiu("\rAltaveu apagat!\0");
-            estatPropaganda = 61;*/
-            setMelodia(melodia);
+            SiPutsCooperatiu("\r\nTrames Totals: \0");
+            SiSendChar(tramesTotals+'0');
+            SiPutsCooperatiu("\r\n\n\0");
+            Menu();
+            estatPropaganda = 0;
             break;
         case 5:
-            SiPutsCooperatiu("\n");
-            SiPutsCooperatiu(getMessage());
-            SiPutsCooperatiu("\r\n\n\0");
-            estatPropaganda = 51;
+            if (hihaMSG == 1) {
+                if(getCharMSG(x) == '\0'){
+                    SiPutsCooperatiu("\n\r\0");
+                    Menu();
+                    estatPropaganda = 0;
+                }else{
+                    estatPropaganda = 10;
+                }
+            } else {
+                SiPutsCooperatiu("\nNo hi ha cap missatge carregat.\n\r\0");
+                Menu();
+                estatPropaganda = 0;
+            }
+            break;
+        case 10:
+            SiSendChar(getCharMSG(x++));
+            estatPropaganda = 5;
             break;
         case 6:
             __asm__ volatile ("reset");
@@ -293,26 +270,46 @@ void initMotorLCD(void){
 void MotorLCD(void){
     switch (estatLCD){
         case 0:
+            
             if(hihaMSG){
-                if(TiGetTics(timerNM) >= 50000){
+                
+                if(TiGetTics(timerNM) < 5000 && F_newMessage == 0){
                     LcPutChar(newMessage[i++]);
                     if (i > MAXCOLUMNES) {
                         estatLCD = 1;
                         TiResetTics(timerLCD);
                         LcGotoXY(0,1);
                     }
-                }else {
-                    LcPutChar(getCharMSG(j));
+                }else if (reciving == 1){
+                    LcPutChar(recivingMSG[i++]);
+                    if (i > MAXCOLUMNES) {
+                        estatLCD = 1;
+                        TiResetTics(timerLCD);
+                        LcGotoXY(0,1);
+                    }
+                }else{
+                    stopMelodia();
+                    F_newMessage = 1;
                     character = getCharMSG(j++);
-                    //SiSendChar(getCharMSG(j));
-                    //if (j==(16)) j= 0;
+                    if (character == '\0') {
+                        LcPutChar(' ');
+                    } else {
+                        LcPutChar(character);
+                    }
 
-                    if((character == '\0') && (i == 0))end=1;
+                    if((character == '\0') && (i == 0))end=1;116
                     if (i++ > MAXCOLUMNES) {
                         estatLCD = 1;
                         TiResetTics(timerLCD);
                         LcGotoXY(0,1);
                     } 
+                }
+            }else if (reciving == 1){
+                LcPutChar(recivingMSG[i++]);
+                if (i > MAXCOLUMNES) {
+                    estatLCD = 1;
+                    TiResetTics(timerLCD);
+                    LcGotoXY(0,1);
                 }
             }else if(!hihaMSG && !hihaID){
                 LcPutChar(noID[i++]);
@@ -364,19 +361,9 @@ void MotorLCD(void){
             segonaLinia[15] = ID[0];
             estatLCD= 2;
             break;
-        case 2: //Aquí faig l'itoa, que deu trigar una bona estona el pobre...
+        case 2: 
             mostra = AdGetMostra();
-            /*myItoa(mostra);
-            segonaLinia[0]=temp[0];
-            segonaLinia[1]=temp[1];
-            segonaLinia[2]=temp[2];
-            segonaLinia[3]=temp[3];*/
             velocidad = CalcularVelocidad(mostra);
-            /*myItoa(velocidad);
-            segonaLinia[5]=temp[0];
-            segonaLinia[6]=temp[1];
-            segonaLinia[7]=temp[2];
-            segonaLinia[8]=temp[3];*/
             estatLCD = 3;
             break;
         case 3:
@@ -401,14 +388,18 @@ void MotorLCD(void){
         case 5:
             if (TiGetTics(timerLCD)>= 250){
                 //Alerta, ja porto 50 ms. des de l'últim refresc
-                caracterInici++;
-                if (end == 1){
-                    caracterInici=0;
-                    end = 0;
-                }
                 estatLCD = 0;
                 LcGotoXY(0,0);
-                j = caracterInici;
+                if ((TiGetTics(timerNM) >= 5000) && (hihaMSG == 1)) {
+                    caracterInici++;
+                    if (end == 1){
+                        caracterInici=0;
+                        end = 0;
+                    }
+                    j = caracterInici;
+                } else {
+                    j = 0;
+                }
                 i=0;
             }
             break;
@@ -431,6 +422,7 @@ void printaFrase(char estat){
         case 4:
             break;
         case 5:
+            SiSendChar('\n');
             break;
         case 6:
             break;
@@ -475,15 +467,28 @@ void IncTramesRebudes(char CheckID){
     if (CheckID == 0) {
         tramesTotals++;
     }else{
-        tramesTotals++;
-        tramesID++;
+        reciving = 1;
     }
 }
 
-void HiHaTrama(){
+void HiHaTrama(unsigned int numBytes){
     hihaMSG = 1;
+    reciving = 0;
     setCharMSG(' ', 15);
     TiResetTics(timerNM);
+    F_newMessage = 0;
+    tramesTotals++;
+    tramesID++;
+    calculoMelodia(numBytes);
+    setMelodia(melodia);
+
+}
+
+void calculoMelodia(unsigned int numBytes){
+    melodia[0] = ((numBytes*10)/300)+melodia[0];
+    melodia[1] = ((numBytes*10)/300)+melodia[1];
+    melodia[2] = ((numBytes*10)/300)+melodia[2];
+    melodia[3] = ((numBytes*10)/300)+melodia[3];
 }
 /*
  *

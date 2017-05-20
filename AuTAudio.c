@@ -38,6 +38,10 @@ void setMelodia(char aux[10]){
     hihaMelodia = 1;
 }
 
+void stopMelodia(){
+    hihaMelodia = 0;
+}
+
 void MotorAudio(){
     switch(estat){
         case 0:
@@ -62,14 +66,18 @@ void MotorAudio(){
             }
             break;
         case 3:
-            if(TiGetTics(periode) >= 1000){
+            if(TiGetTics(periode) >= 500){
                 TiResetTics(periode);
                 qMelodia++;
                 if(qMelodia > 3){
                     qMelodia = 0;
                 }
             }
-            estat = 1;
+            if(hihaMelodia == 1){
+               estat = 1;
+            }else{
+               estat = 0;
+            }
             break;
     }
 }

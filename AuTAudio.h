@@ -35,5 +35,8 @@ void setAudioPeriode(char nouPeriode);
 
 void setMelodia(char aux[10]);
 
+void stopMelodia();
+
+
 
 #endif	/* AUTAUDIO_H */

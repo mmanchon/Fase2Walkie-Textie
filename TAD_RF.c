@@ -6,7 +6,7 @@ static char MSG[350];
 static int timer;
 static char mostra, qbits;
 static unsigned char i;
-static unsigned int j;
+static unsigned int j,numBytes;
 static char byte, idTrama, linia;
 static char HHTrama, CheckID;
 
@@ -27,7 +27,7 @@ void InitRF(void) {
     ID[2] = 0; 
     numero = CheckID = 0;
     mostra = 0;
-    byte = 0;
+    byte = numBytes = 0;
     idTrama = 0;
     qbits = 0;
     HHTrama = 0;
@@ -108,13 +108,14 @@ void MotorRF(void) {
             if ((qbits == 8) && (i < 3) && (idTrama == 'N') && (HHTrama == 1)) {
                 //SiPutsCooperatiu("\nTINC un byte\r\n\0");
                 ID[i++] = byte;
+                numBytes = 0;
                 qbits = 0;
                 estat = 5;
             }
             
             if(i==3 && CheckID == 0){
                 CheckID = ComparaID(ID);
-                SiPutsCooperatiu("\nCHECK ID\r\n\0");
+               // SiPutsCooperatiu("\nCHECK ID\r\n\0");
                 IncTramesRebudes(CheckID);
                 if(CheckID == 0){
                     qbits = 0;
@@ -132,7 +133,7 @@ void MotorRF(void) {
                 SiSendChar(ID[1]+'0');
                 SiSendChar(ID[2]+'0');*/
                 
-                
+                numBytes++;
                 setCharMSG(byte,j++);
                 //MSG[j++] = byte;
                 qbits = 0;
@@ -147,7 +148,7 @@ void MotorRF(void) {
             if ((qbits == 8) && (i >= 3) && (byte == 0x3D) && (idTrama == 'N')) {
                 //SiPutsCooperatiu("\nTINC MISSATGE\r\n\0");
                 setCharMSG('\0',j);
-                HiHaTrama();
+                HiHaTrama(numBytes);
                 qbits = 0;
                 i = 0;
                 j = 16;
