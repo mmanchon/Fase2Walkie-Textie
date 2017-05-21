@@ -1,21 +1,7 @@
-//
-// Mòdul de gestiò de Timers
-// Barsalona, Novembre de 1995, Juan Perez & JM Ribes.
-// Desembre de 2001. FEC. Ajustat per al Fujitsu 90583
-// Març de 2010. FEC. Ajustat per al PIC24 (com passen els anys...)
-// 
-
-
 #ifndef _TITTIMER_H_
 #define _TITTIMER_H_
 
-
-// Si anem justos de memoria, aquest define indica el
-// nombre de timers d'aquest TAD i es pot modificar sense
-// problemes.
 #define         TI_NUMTIMERS                    25
-
-
 // El següent define marca la distància temporal màxima
 // entre un gettics i un resettics
 //#define         TI_MAXTICS                      8640000000L //Suficient per aprox. 100 dies
@@ -61,4 +47,4 @@ void TiEnd (void);
 	//Postcondicions: Tanca el T.A.D.
 	\\*********************************************************************/
 
-#endif
+#endif /* TITTIMER_H */

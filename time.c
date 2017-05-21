@@ -1,31 +1,12 @@
-//
-// Mòdul de gestiò de Timers
-// Barsalona, Novembre de 1995, Juan Perez & JM Ribes.
-// Desembre de 2001. FEC. Ajustat per al Fujitsu 90583
-// Març de 2010. FEC. Ajustat per al PIC24 (com passen els anys...)
-// 
-
 #include "time.h"
 #include <xc.h>
-
-
-//
-//--------------------------------CONSTANTS---AREA-----------
 
 #define         TI_FALS                         0
 #define         TI_CERT                         1
 
-// Tipus imbècils
 typedef unsigned char        BYTE;
 typedef unsigned short       WORD;
 
-//
-//---------------------------End--CONSTANTS---AREA-----------
-//
-
-//
-//--------------------------------VARIABLES---AREA-----------
-//
 struct Timer {
 	unsigned int h_TicsInicials;
 	unsigned char b_busy;
@@ -34,12 +15,6 @@ struct Timer {
 static unsigned int  h_Tics=0;
 static int counter;
 
-//
-//---------------------------End--VARIABLES---AREA-----------
-//
-//
-//--------------------------------PRIVADES----AREA-----------
-//
 void TimerInit(void) {
 
 }
@@ -54,18 +29,10 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) { // Cada 1ms, a
 				s_Timers[counter].h_TicsInicials -= h_Tics;
 		h_Tics=0;
 	}
-#ifdef	_TOUCH
+    #ifdef	_TOUCH
 	TcRSI();	
-#endif
-
+    #endif
 }
-//
-//---------------------------End--PRIVADES----AREA-----------
-//
-
-//
-//--------------------------------PUBLIQUES---AREA-----------
-//
 
 void TiInit () {
 	unsigned char counter;
@@ -73,11 +40,10 @@ void TiInit () {
 		s_Timers[counter].b_busy=TI_FALS;
 	}
 	h_Tics=0;
-	// Suposo que anem a 8MHz
 	T1CONbits.TCKPS1 = 0;
 	T1CONbits.TCKPS0 = 1; // Preescaler a 1/8, pols de 2us (TRET)
 	// La resta de valors de T1CON per defecte
-//	PR1 = 500;	// 500 * 2us = 1ms 
+    //	PR1 = 500;	// 500 * 2us = 1ms 
 	PR1 = 4*500;	// 500 * 2us = 1ms , no anem a 8 si nó a 32
 	T1CONbits.TON = 1;		// Activo el timer
 	// Activo la interrupció del timer 1
@@ -101,7 +67,6 @@ void TiResetTics (unsigned char Handle) {
 	//__EI();
 }
 
-
 unsigned int TiGetTics (unsigned char Handle) {
 volatile unsigned int actual;
 	actual=h_Tics; // indivisible si és un int, clar.
@@ -112,13 +77,5 @@ void TiCloseTimer (unsigned char Handle) {
 	s_Timers[Handle].b_busy=TI_FALS;
 }
 
-
 void TiEnd () {
 }
-
-//
-//---------------------------End--PUBLIQUES---AREA-----------
-//
-
-
-

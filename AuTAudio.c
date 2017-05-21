@@ -12,13 +12,8 @@ void AuInit(){
     SET_AUDIO_DIR();
     AUDIO_OFF();
     timerAudio = TiGetTimer();
-    estat = hihaMelodia = 0;
     periode = TiGetTimer();
-    qMelodia = 0;
-}
-
-char getAudioPeriode(void){
-    return periode;
+    estat = hihaMelodia = qMelodia = 0;
 }
 
 void setAudioPeriode(char nouPeriode){
@@ -84,12 +79,9 @@ void MotorAudio(){
 
 
 char changeAudioStatus(){
-    //Post Canvia l'estat d'audio
     if (estat == 2){
-        //estic callat, toca parlar!
         estat = 0;
     }else{
-        //Estic parlant, callo!
         estat = 2;
         AUDIO_OFF();
     }

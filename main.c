@@ -1,34 +1,17 @@
-/* 
- * File:   main.c
- * Author: navarrito
- *
- * Created on 25 de enero de 2014, 20:15
- */
-
 #include <xc.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
-//#include "TiTTimer.h"
 #include "time.h"
-//#include "LeTLeds.h"
 #include "TPWM.h"
 #include "LcTLCD.h"
 #include "AuTAudio.h"
-#include "SwTSwitch.h"
-#include "PbTPushbutton.h"
 #include "AdTADC.h"
-#include "BlTBacklight.h"
 #include "SiTSio.h"
-#include "PrTPropaganda.h"
+#include "TAD_Control.h"
 #include "TAD_RF.h"
 #include "TAD_MSG.h"
-/*
- * 
- */
-
-
 
 // Configuration Bits - 24.1 del Datasheet 
 _CONFIG2(		IESO_OFF				// Two Speed Start-up               DISABLED
@@ -42,7 +25,6 @@ _CONFIG2(		IESO_OFF				// Two Speed Start-up               DISABLED
 			& 	I2C1SEL_SEC
 );
 
-
 _CONFIG1(		JTAGEN_OFF                              // JTAG                             DISABLED
 			&	GCP_OFF				// Code Protect                     DISABLED
 			&	GWRP_OFF			// Write Protect                    DISABLED
@@ -55,46 +37,36 @@ _CONFIG1(		JTAGEN_OFF                              // JTAG                      
 			&	WDTPS_PS2048			// Watchdog postscale	1:2048      Pre=128 i Post=2048 --> WatchDog Timer = 8seg
 );
 
-
-
 void initCPU(){
     CLKDIV=0x0000;          // Divisió del clock pel timer i CPU per 1
  //   OSCCON=0x0020;
     RCONbits.SWDTEN = 0;    // Desactivem el Watchdog
 }
 
-
-
-
 int main(void){
     initCPU();
     TiInit();
     PWMInit();
-    //LeInit();
     LcInit(2,16);
     AuInit();
-    SwInit();
-    //PbInit();
     AdInit();
-    BlInit();
     SiInit();
     LcClear();
     LcCursorOff();
     LcGotoXY(0,0);
     LcPutString("Booting...");
     initMotorLCD();
-    initPropaganda();
+    initControl();
     InitRF();
     initMSG();
     while(1){
         
-       // MotorLed();
         MotorPWM(0);
         MotorPWM(1);
         MotorPWM(2);
         MotorLCD();
         MotorAudio();
-        MotorPropaganda();
+        MotorControl();
         MotorSIO();
         MotorRF();
     }

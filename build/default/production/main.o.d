@@ -4,11 +4,8 @@ time.h  \
 TPWM.h  \
 LcTLCD.h  \
 AuTAudio.h  \
- SwTSwitch.h  \
-PbTPushbutton.h  \
-BlTBacklight.h  \
-AdTADC.h  \
+ AdTADC.h  \
 SiTSio.h  \
- PrTPropaganda.h  \
+TAD_Control.h  \
 TAD_MSG.h  \
 TAD_RF.h 

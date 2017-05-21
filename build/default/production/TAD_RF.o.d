@@ -3,12 +3,9 @@ TAD_RF.c  \
 TAD_RF.h  \
 time.h  \
 SiTSio.h  \
- PrTPropaganda.h  \
-BlTBacklight.h  \
+ TAD_Control.h  \
 TPWM.h  \
-PbTPushbutton.h  \
 AuTAudio.h  \
- LcTLCD.h  \
+LcTLCD.h  \
 AdTADC.h  \
-SwTSwitch.h  \
 TAD_MSG.h 

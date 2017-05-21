@@ -11,9 +11,7 @@ static char byte, idTrama, linia;
 static char HHTrama, CheckID;
 
 void InitRF(void) {
-    
     int i;
-    
     estat = 0;
     
     SET_RF_DIR();
@@ -22,17 +20,8 @@ void InitRF(void) {
         MSG[i] = '\0';
     }
     
-    ID[0] = 0;
-    ID[1] = 0;
-    ID[2] = 0; 
-    numero = CheckID = 0;
-    mostra = 0;
-    byte = numBytes = 0;
-    idTrama = 0;
-    qbits = 0;
-    HHTrama = 0;
-    linia = 0;
-    i = 0;
+    ID[0] = ID[1] = ID[2] = 0;
+    numero = CheckID = mostra = idTrama = qbits = HHTrama = linia = i = byte = numBytes = 0;
     j = 16;
     
     timer = TiGetTimer();
@@ -51,13 +40,11 @@ void MotorRF(void) {
             if((PORTBbits.RB13 == 0)){
                 if((TiGetTics(timer) < 5)){
                     estat = 0;
-
                 }else{
                     TiResetTics(timer);
                     estat = 2;
                 }
             }
-            
             break;
         case 2:
             if((PORTBbits.RB13 == 0)){
@@ -70,7 +57,6 @@ void MotorRF(void) {
                 TiResetTics(timer);
                 estat = 2;
             }
-            
             break;
         case 3:
             if (PORTBbits.RB13 != linia) {
@@ -98,7 +84,6 @@ void MotorRF(void) {
                 linia = PORTBbits.RB13;
                 estat = 4;
             }
-            
             if ( (qbits == 8) && (HHTrama == 0)) {
                 idTrama = byte;
                 HHTrama = 1;
@@ -106,16 +91,13 @@ void MotorRF(void) {
                 estat = 5;
             }
             if ((qbits == 8) && (i < 3) && (idTrama == 'N') && (HHTrama == 1)) {
-                //SiPutsCooperatiu("\nTINC un byte\r\n\0");
                 ID[i++] = byte;
                 numBytes = 0;
                 qbits = 0;
                 estat = 5;
             }
-            
             if(i==3 && CheckID == 0){
                 CheckID = ComparaID(ID);
-               // SiPutsCooperatiu("\nCHECK ID\r\n\0");
                 IncTramesRebudes(CheckID);
                 if(CheckID == 0){
                     qbits = 0;
@@ -128,14 +110,8 @@ void MotorRF(void) {
                 }
             }
             if ((qbits == 8) && (i >= 3) && (byte != 0x3D) && (idTrama == 'N') && (HHTrama == 1)) {
-                /*SiPutsCooperatiu("\nTINC ID\r\n\0");
-                SiSendChar(ID[0]+'0');
-                SiSendChar(ID[1]+'0');
-                SiSendChar(ID[2]+'0');*/
-                
                 numBytes++;
                 setCharMSG(byte,j++);
-                //MSG[j++] = byte;
                 qbits = 0;
                 estat = 5; 
             }
@@ -144,9 +120,7 @@ void MotorRF(void) {
                 HHTrama = 0;
                 estat = 0;
             }
-
             if ((qbits == 8) && (i >= 3) && (byte == 0x3D) && (idTrama == 'N')) {
-                //SiPutsCooperatiu("\nTINC MISSATGE\r\n\0");
                 setCharMSG('\0',j);
                 HiHaTrama(numBytes);
                 qbits = 0;
@@ -158,8 +132,6 @@ void MotorRF(void) {
                 estat = 0;
                 TiResetTics(timer);
             }
-            break;
-         
+            break;    
     }
 }
-

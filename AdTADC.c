@@ -2,7 +2,6 @@
 
 void AdInit(void){
     TRISAbits.TRISA0 = 1;
-    //AD1PCFGbits.PCFG0=1; //Per provar si escolta l'entrada digital
 
     AD1CON1bits.ADSIDL=1;   //Sempre converteix
     AD1CON1bits.FORM1=AD1CON1bits.FORM0=0; //Right aligned
